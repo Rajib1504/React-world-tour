@@ -14,7 +14,9 @@ const Countries = () => {
 
   const handelMarkVisit = (country) => {
     console.log("I've visited the state");
-    setMarked(country);
+    const newmarkedcontainer = [...marked, country]; //you can't push in react array you need to do in this way spread operator
+    setMarked(newmarkedcontainer);
+    //     setMarked(country);
     //     console.log(country);
   };
   return (
@@ -22,7 +24,14 @@ const Countries = () => {
       <h3>Countries:{countries.length}</h3>
 
       <div className="grid, area">
-        <h5 style={{ textAlign: "center" }}>Visited Countries:</h5>
+        <h5 style={{ textAlign: "center" }}>
+          Visited Countries:{marked.length}
+        </h5>
+        <div>
+          {marked.map((country) => (
+            <li key={country.cca3}>{country.name.common}</li>
+          ))}
+        </div>
       </div>
       <div className="grid">
         {countries.map((country) => (
