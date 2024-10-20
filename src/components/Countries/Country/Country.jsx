@@ -1,7 +1,8 @@
 import "./Country.css";
 const Country = ({ country }) => {
-  console.log(country);
+  //   console.log(country);
   const { name, flags, population, area } = country;
+  //   console.log(name);
   return (
     <div className="box">
       <img src={flags.png} alt="" />
