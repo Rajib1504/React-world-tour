@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Country.css";
-const Country = ({ country }) => {
+const Country = ({ country, handelMarkVisit }) => {
   //   console.log(country);
   const { name, flags, population, area, cca3 } = country;
   //   console.log(name);
@@ -8,6 +8,8 @@ const Country = ({ country }) => {
   const handlelVisited = () => {
     setVisited(!visited);
   };
+  //   console.log(handelMarkVisit);
+  //   const getParams = () => handelMarkVisit(country);
   return (
     <div className={`box ${visited && "visited"}`}>
       <img src={flags.png} className="img" alt="" />
@@ -18,10 +20,21 @@ const Country = ({ country }) => {
         <p>
           <small>Code:{cca3}</small>
         </p>
-        <button onClick={handlelVisited}>
-          {visited ? "Visited" : "Going"}
-        </button>
-        <p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <button onClick={handlelVisited}>
+            {visited ? "Visited" : "Going"}
+          </button>
+          <button onClick={() => handelMarkVisit(country)}>
+            Mark as visited
+          </button>
+        </div>
+        <p style={{ textAlign: "center" }}>
           {visited
             ? "I've visited this country"
             : "I want to visit this country"}
