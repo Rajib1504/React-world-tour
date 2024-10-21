@@ -6,6 +6,7 @@ import "./countries.css";
 const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [marked, setMarked] = useState([]);
+  const [language, setLanguage] = useState([]);
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
@@ -13,34 +14,66 @@ const Countries = () => {
   }, []);
 
   const handelMarkVisit = (country) => {
-    console.log("I've visited the state");
+    // console.log("I've visited the state");
     const newmarkedcontainer = [...marked, country]; //you can't push in react array you need to do in this way spread operator
     setMarked(newmarkedcontainer);
-    //     setMarked(country);
     //     console.log(country);
   };
-  return (
-    <div>
-      <h3>Countries:{countries.length}</h3>
+  // language
 
+  const handelLnguageCheck = (Mylanguage) => {
+    setLanguage(Mylanguage);
+    const newlang = [...language, Mylanguage];
+    setLanguage(newlang);
+  };
+  return (
+    <div style={{ border: "2px solid green" }}>
+      <h3>Countries:{countries.length}</h3>
+      {/* visited countries  */}
       <div className="grid, area">
         <h5 style={{ textAlign: "center" }}>
           Visited Countries:{marked.length}
         </h5>
-        <div>
-          {marked.map((country) => (
-            <li key={country.cca3}>{country.name.common}</li>
+        <div
+          style={{
+            display: "flex",
+            gap: "5px",
+            // border: "2px solid grey",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ border: "2px solid grey" }}>
+            <div style={{}}>
+              {marked.map((country) => (
+                <img src={country.flags.png} key={country.cca3} alt="" />
+              ))}
+            </div>
+            <div>
+              {marked.map((country) => (
+                <h3 key={country.cca3}>{country.name.common}</h3>
+              ))}
+            </div>
+            {/* language */}
+            <div>
+              {language.map((lang) => {
+                <p key={lang.eng}>{lang}</p>;
+              })}
+            </div>
+          </div>
+        </div>
+        {/* display Country */}
+        <div className="grid">
+          {countries.map((country) => (
+            <Country
+              country={country}
+              key={country.cca3}
+              handelMarkVisit={handelMarkVisit}
+              handelLnguageCheck={handelLnguageCheck}
+            ></Country>
           ))}
         </div>
-      </div>
-      <div className="grid">
-        {countries.map((country) => (
-          <Country
-            country={country}
-            key={country.cca3}
-            handelMarkVisit={handelMarkVisit}
-          ></Country>
-        ))}
       </div>
     </div>
   );
