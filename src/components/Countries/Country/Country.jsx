@@ -3,7 +3,8 @@ import "./Country.css";
 const Country = ({ country, handelMarkVisit, handelLnguageCheck }) => {
   // console.log(country);
   const { name, flags, population, area, cca3, languages } = country;
-  //   console.log(name);
+
+  const countryLaguage = Object.values(languages || {});
 
   const [visited, setVisited] = useState(false);
   const handlelVisited = () => {
@@ -36,7 +37,7 @@ const Country = ({ country, handelMarkVisit, handelLnguageCheck }) => {
         <button onClick={() => handelMarkVisit(country)}>
           Mark as visited
         </button>
-        <button onClick={() => handelLnguageCheck(country.languages)}>
+        <button onClick={() => handelLnguageCheck(countryLaguage)}>
           Language
         </button>
       </div>

@@ -22,10 +22,10 @@ const Countries = () => {
   // language
 
   const handelLnguageCheck = (Mylanguage) => {
-    setLanguage(Mylanguage);
     const newlang = [...language, Mylanguage];
     setLanguage(newlang);
   };
+  console.log(language);
   return (
     <div style={{ border: "2px solid green" }}>
       <h3>Countries:{countries.length}</h3>
@@ -34,6 +34,7 @@ const Countries = () => {
         <h5 style={{ textAlign: "center" }}>
           Visited Countries:{marked.length}
         </h5>
+
         <div
           style={{
             display: "flex",
@@ -57,9 +58,9 @@ const Countries = () => {
             </div>
             {/* language */}
             <div>
-              {language.map((lang) => {
-                <p key={lang.eng}>{lang}</p>;
-              })}
+              {language.map((lang, index) => (
+                <h1 key={index}>oiii sala: {lang}</h1>
+              ))}
             </div>
           </div>
         </div>
